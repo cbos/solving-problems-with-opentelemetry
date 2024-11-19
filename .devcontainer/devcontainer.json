@@ -1,0 +1,60 @@
+{
+	"name": "Docker outside of Docker",
+	
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+			"version": "latest",
+            "installZsh": "false",
+			"enableNonRootDocker": "true"
+		},
+        "ghcr.io/dhoeric/features/k6:1": {},
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "latest",
+            "jdkDistro": "tem",
+            "installMaven": "true",
+            "installGradle": "false"
+        },
+
+	},
+
+	// Use this environment variable if you need to bind mount your local source code into a new container.
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+
+    "customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			"settings": {},
+			"extensions": [
+                "vivaxy.vscode-conventional-commits",
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-java-dependency",
+                "vscjava.vscode-spring-boot-dashboard",
+                "vscjava.vscode-spring-initializr",
+                "pivotal.vscode-spring-boot",
+                "vscjava.vscode-maven",
+                "visualstudioexptteam.vscodeintellicode",
+                "ms-azuretools.vscode-docker",
+                "k6.k6"
+            ]
+		}
+	}
+
+    
+}
