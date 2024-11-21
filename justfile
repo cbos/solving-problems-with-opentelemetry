@@ -8,9 +8,10 @@ set dotenv-load := true
 # Podman or Docker executable
 PODMAN_COMPOSE := "podman-compose"
 DOCKER_COMPOSE := "docker compose"
+COMPOSE_FILE := "-f docker/docker-compose.yml"
 
 # Check if the podman is available
-CONTAINER_EXECUTABLE := if shell('command -v ' + DOCKER_COMPOSE ) != "" { DOCKER_COMPOSE } else { PODMAN_COMPOSE }
+CONTAINER_EXECUTABLE := if shell('command -v ' + PODMAN_COMPOSE ) != "" { PODMAN_COMPOSE } else { DOCKER_COMPOSE }
 
 # List of command
 default:
@@ -27,15 +28,18 @@ download-otel:
     curl -sL -o .otel/opentelemetry-javaagent.jar "https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v$OTEL_VERSION/opentelemetry-javaagent.jar"
     ls -lh .otel/
 
-# Use the selected executable in a recipe
-start:
-    {{CONTAINER_EXECUTABLE}} -f docker/docker-compose.yml up -d --build
+# Start services (and build if needed)
+up:
+    {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} up -d --build
 
+# Bring the stack down
 down:
-    {{CONTAINER_EXECUTABLE}} -f docker/docker-compose.yml down
+    {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} down
 
+# Show the current status
 @ps:
-    {{CONTAINER_EXECUTABLE}} -f docker/docker-compose.yml ps
+    {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} ps
 
-@log SERVICE:
-    {{CONTAINER_EXECUTABLE}} -f docker/docker-compose.yml logs {{SERVICE}}
+# Show the logs of the service provided as parameter
+@logs SERVICE:
+    {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} logs {{SERVICE}}

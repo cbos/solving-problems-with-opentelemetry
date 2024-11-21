@@ -2,9 +2,11 @@ x-otel-base: &otel-base
   env_file:
     - opentelemetry.properties
   extra_hosts:
-    - "host.docker.internal:host-gateway"
+    # host.containers.internal is standard for podman, with this mapping it is also available for docker
+    - "host.containers.internal:host-gateway"
   volumes:
-    - ../.otel/opentelemetry-javaagent.jar:/opentelemetry-javaagent.jar:ro
+    # file is shared with multiple containers, adding 'z' attribute
+    - ../.otel/opentelemetry-javaagent.jar:/app/opentelemetry-javaagent.jar:ro,z
 
 name: OpenTelemetry-demo
 
