@@ -45,10 +45,10 @@ down:
 @logs SERVICE:
     {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} logs {{SERVICE}}
 
-run-k6 TEST_ID SCRIPT:
-    @echo "Starting test"
+_run-k6 TEST_ID SCRIPT:
     K6_OTEL_GRPC_EXPORTER_INSECURE=true K6_OTEL_METRIC_PREFIX=k6_ k6 run --tag test-id="{{TEST_ID}}" -o experimental-opentelemetry {{SCRIPT}}
 
-k6-scenario-1:
-    just run-k6 "{{TAG}}_scenario1" "k6/scenario1.js"
+# Run k6 scenario 1, just a small load on both services
+@k6-scenario-1:
+    just _run-k6 "{{TAG}}_scenario1" "k6/scenario1.js"
 
