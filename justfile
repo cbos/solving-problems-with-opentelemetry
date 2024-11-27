@@ -12,7 +12,7 @@ COMPOSE_FILE := "-f docker/docker-compose.yml"
 TAG := `date +"%Y%m%d-%H%M%S"`
 
 # Check if the podman is available
-CONTAINER_EXECUTABLE := if shell('command -v ' + PODMAN_COMPOSE ) != "" { PODMAN_COMPOSE } else { DOCKER_COMPOSE }
+CONTAINER_EXECUTABLE := if shell('command -v ' + DOCKER_COMPOSE ) != "" { DOCKER_COMPOSE } else { PODMAN_COMPOSE }
 
 # List of command
 default:
