@@ -8,27 +8,29 @@ x-otel-base: &otel-base
     # file is shared with multiple containers, adding 'z' attribute
     - ../.otel/opentelemetry-javaagent.jar:/app/opentelemetry-javaagent.jar:ro,z
 
-name: OpenTelemetry-demo
+name: OpenTelemetry-demo-app
 
 services:
-  service1:
+  alpha:
     <<: *otel-base
-    image: ceesbos.nl/service1
+    image: ceesbos.nl/alpha
     build:
       context: ..
       dockerfile: docker/Dockerfile
     environment:
-      - OTEL_SERVICE_NAME=service1
+      - OTEL_SERVICE_NAME=alpha
+      - SPRING_APPLICATION_NAME=alpha
     ports:
       - "8081:8080"
 
-  service2:
+  beta:
     <<: *otel-base
-    image: ceesbos.nl/service2
+    image: ceesbos.nl/beta
     build:
       context: ..
       dockerfile: docker/Dockerfile
     environment:
-      - OTEL_SERVICE_NAME=service2
+      - OTEL_SERVICE_NAME=beta
+      - SPRING_APPLICATION_NAME=beta
     ports:
       - "8082:8080"
