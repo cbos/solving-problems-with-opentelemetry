@@ -1,10 +1,10 @@
-package nl.cbos.insights_with_opentelemetry;
+package nl.cbos.simpleapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class InsightsWithOpentelemetryApplicationTests {
+class SimpleApplicationTests {
 
 	@Test
 	void contextLoads() {

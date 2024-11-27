@@ -1,4 +1,4 @@
-package nl.cbos.insights_with_opentelemetry.controller;
+package nl.cbos.simpleapp.controller;
 
 import java.io.IOException;
 import java.net.URI;

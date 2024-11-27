@@ -1,7 +1,8 @@
-package nl.cbos.insights_with_opentelemetry.controller;
+package nl.cbos.simpleapp.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,10 +15,13 @@ public class SimpleRequestHandler {
 
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     @GetMapping("/")
     public String index() {
         logger.info("In index handler");
-        return "Greetings from Observability demo app!";
+        return String.format("Greetings from Observability demo app '%s'!", appName);
     }
 
     @GetMapping("/random")
@@ -31,6 +35,6 @@ public class SimpleRequestHandler {
             throw new RuntimeException("simulating an error");
         }
 
-        return "Random greetings from Observability demo app!";
+        return String.format("Random greetings from Observability demo app '%s'!", appName);
     }
 }

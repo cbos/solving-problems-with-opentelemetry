@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>nl.cbos</groupId>
-	<artifactId>insights-with-opentelemetry</artifactId>
+	<artifactId>solving-problems-with-opentelemetry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>insights-with-opentelemetry</name>
+	<name>solving-problems-with-opentelemetry</name>
 	<description>Application to demonstrate OpenTelemetry</description>
 	<url/>
 	<licenses>

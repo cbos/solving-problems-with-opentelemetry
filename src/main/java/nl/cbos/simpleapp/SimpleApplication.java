@@ -1,13 +1,13 @@
-package nl.cbos.insights_with_opentelemetry;
+package nl.cbos.simpleapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InsightsWithOpenTelemetryApplication {
+public class SimpleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InsightsWithOpenTelemetryApplication.class, args);
+		SpringApplication.run(SimpleApplication.class, args);
 	}
 
 }
