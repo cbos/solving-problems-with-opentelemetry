@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.http.HttpClient;
@@ -27,18 +28,16 @@ public class ChainRequestHandler {
             .build();
 
 
-    @GetMapping("/chain")
-    public String chainRequest() throws InterruptedException, IOException {
-
+    @GetMapping("/chain/{id}")
+    public String chainRequest(@PathVariable String id) throws InterruptedException, IOException {
         logger.info("In chain request handler");
-
-        return callDownstream();
+        return callDownstream(id);
     }
 
-    private synchronized String callDownstream() throws IOException, InterruptedException {
+    private synchronized String callDownstream(String id) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(String.format("http://%s:8080/random", hostname)))
+                .uri(URI.create(String.format("http://%s:8080/random/%s", hostname, id)))
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,17 +25,26 @@ public class SimpleRequestHandler {
         return String.format("Greetings from Observability demo app '%s'!", appName);
     }
 
-    @GetMapping("/random")
-    public String randomBehaviour() throws InterruptedException {
+    @GetMapping("/random/{id}")
+    public String randomBehaviour(@PathVariable String id) throws InterruptedException {
+        int parsedId = Integer.parseInt(id);
+        if(parsedId <= 0 || parsedId > 20) {
+            logger.error("Invalid id: {}", id);
+        }
 
         logger.info("In random behavior handler");
 
-        Thread.sleep((long) (Math.abs((random.nextGaussian() + 1.0) * 300.0)));
-        if (random.nextInt(10) < 3) {
-            logger.error("Randomly failing to simulate an error");
-            throw new RuntimeException("simulating an error");
+        if (!handleRequest(parsedId)) {
+            logger.error("Failed request");
+            throw new RuntimeException("Something went terribly wrong");
         }
 
-        return String.format("Random greetings from Observability demo app '%s'!", appName);
+        return String.format("Random greetings from Observability demo app '%s' with input %s!", appName, id);
+    }
+
+    private boolean handleRequest(int id) throws InterruptedException {
+        Thread.sleep((long) (Math.abs((random.nextGaussian() + 1.0) * 300.0)));
+        // mark fine when id is bigger then 3
+        return id > 3;
     }
 }

@@ -20,7 +20,7 @@ default:
 
 # Build the demo app
 build:
-    ./mvnw verify
+    ./mvnw clean verify
 
 # Download (and overwrite) OpenTelemetry autoinstrument jar
 download-otel:
@@ -51,4 +51,12 @@ _run-k6 TEST_ID SCRIPT:
 # Run k6 scenario 1, just a small load on both services
 @k6-scenario-1:
     just _run-k6 "{{TAG}}_scenario1" "k6/scenario1.js"
+
+# Run k6 scenario 2
+@k6-scenario-2:
+    just _run-k6 "{{TAG}}_scenario2" "k6/scenario2.js"
+
+# Run k6 scenario 3
+@k6-scenario-3:
+    just _run-k6 "{{TAG}}_scenario3" "k6/scenario3.js"
 
