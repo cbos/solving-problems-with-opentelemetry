@@ -42,7 +42,7 @@ down:
     {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} ps
 
 # Show the logs of the service provided as parameter
-@logs SERVICE:
+@logs +SERVICE:
     {{CONTAINER_EXECUTABLE}} {{COMPOSE_FILE}} logs {{SERVICE}}
 
 _run-k6 TEST_ID SCRIPT:
