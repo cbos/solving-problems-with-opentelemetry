@@ -17,6 +17,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    mem_limit: 1gb
     environment:
       - OTEL_SERVICE_NAME=alpha
       - SPRING_APPLICATION_NAME=alpha
