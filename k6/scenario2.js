@@ -3,7 +3,7 @@ import { randomSeed } from 'k6';
 import http from 'k6/http';
 import { sleep } from 'k6';
 export const options = {
-    vus: 10,
+    vus: 20,
     duration: '360s',
 };
 export default function () {
@@ -11,8 +11,6 @@ export default function () {
     const rnd = getRandomInt(10);
 
     http.get('http://localhost:8081/random/' + rnd);
-    http.get('http://localhost:8082/');
-    http.get('http://localhost:8081/');
     http.get('http://localhost:8082/random/' + rnd);
     sleep(1);
 }
