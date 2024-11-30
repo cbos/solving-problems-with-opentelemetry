@@ -30,7 +30,7 @@ public class ChainRequestHandler {
 
     @GetMapping("/chain/{id}")
     public String chainRequest(@PathVariable String id) throws InterruptedException, IOException {
-        logger.info("In chain request handler");
+        logger.info("In chain request handler for {}", id);
         return callDownstream(id);
     }
 

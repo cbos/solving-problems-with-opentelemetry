@@ -32,7 +32,7 @@ public class SimpleRequestHandler {
             logger.error("Invalid id: {}", id);
         }
 
-        logger.info("In random behavior handler");
+        logger.info("In random behavior handler for {}", id);
 
         if (!handleRequest(parsedId)) {
             logger.error("Failed request");
