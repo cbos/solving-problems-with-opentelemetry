@@ -1,4 +1,5 @@
 # Insights with OpenTelemetry
+![Badge](https://goto.ceesbos.nl/badge/github/cbos/solving-problems-with-opentelemetry)
 
 This repo contains the demos of my talk 'How I solved production issues with OpenTelemetry (and how you can too)'
 
