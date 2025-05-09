@@ -28,9 +28,6 @@ public class SimpleRequestHandler {
     @GetMapping("/random/{id}")
     public String randomBehaviour(@PathVariable String id) throws InterruptedException {
         int parsedId = Integer.parseInt(id);
-        if(parsedId <= 0 || parsedId > 20) {
-            logger.error("Invalid id: {}", id);
-        }
 
         logger.info("In random behavior handler for {}", id);
 
