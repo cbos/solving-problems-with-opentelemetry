@@ -1,4 +1,4 @@
-FROM docker.io/eclipse-temurin:21.0.5_11-jre-alpine
+FROM docker.io/eclipse-temurin:21.0.7_6-jre-alpine
 
 # Expose the port to the external world
 EXPOSE 8080
